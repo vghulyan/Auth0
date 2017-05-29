@@ -2,19 +2,16 @@ import * as bcrypt from 'bcryptjs';
 import * as mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-  username: String,
+  username: { type: String },
   email: { type: String, unique: true, lowercase: true, trim: true },
-  password: String,
-  role: String,
-  create_at: Date
+  password: { type: String },
+  role: { type: String, default: 'user' },
+  create_at: { type: Date, default: Date.now }
 });
 
 // Before saving the user, hash the password
 userSchema.pre('save', function(next) {
   const user = this;
-  if (!user.create_at) {
-    user.create_at = new Date();
-  };
   if (!user.isModified('password')) { return next(); }
   bcrypt.genSalt(10, function(err, salt) {
     if (err) { return next(err); }
