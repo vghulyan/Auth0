@@ -14,6 +14,7 @@
 2. If user logged in and user refreshes the screen then system should not redirect to login page but stay on the same page.
 3. If user logged in then logout link should appear and login link should disappear. 
 4. Allow user to be authenticated using google or facebook.
+5. Link to retrieve the forgotten password
 
 ## Registration
 ### When user sucessfuly registers but not authorised to use the system yet, then save the record to temp table. Upon registration, send an email template to users email address asking user to click the link to be authenticated. If user clicks on the link then authenticate the user. If user did not click the link within 24 hours remove the user from the temp table.
